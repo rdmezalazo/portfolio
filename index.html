@@ -1,0 +1,750 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ronald Meza Lazo | Portafolio Profesional</title>
+    <meta name="description" content="Portafolio profesional de Ronald Meza Lazo - Ingeniero de Sistemas, Líder de Infraestructura TI con +15 años de experiencia.">
+    <meta name="author" content="Ronald Meza Lazo">
+    <meta property="og:title" content="Ronald Meza Lazo | Portafolio Profesional">
+    <meta property="og:description" content="Ingeniero de Sistemas con +15 años de experiencia en infraestructura TI, desarrollo Full Stack y liderazgo tecnológico.">
+    <meta property="og:type" content="website">
+    <link rel="icon" type="image/jpeg" href="https://github.com/rdmezalazo.png">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', '-apple-system', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #6366f1;
+            --primary-light: #818cf8;
+            --accent: #22d3ee;
+            --bg: #030712;
+            --surface: #111827;
+            --surface-2: #1f2937;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Inter', system-ui, sans-serif;
+            background: var(--bg);
+            color: #e5e7eb;
+            overflow-x: hidden;
+        }
+
+        /* Smooth scroll */
+        html { scroll-behavior: smooth; }
+
+        /* Custom scrollbar */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: var(--bg); }
+        ::-webkit-scrollbar-thumb { background: #374151; border-radius: 3px; }
+        ::-webkit-scrollbar-thumb:hover { background: #4b5563; }
+
+        /* Navbar */
+        .nav-glass {
+            background: rgba(3, 7, 18, 0.8);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255,255,255,0.04);
+        }
+
+        .nav-link {
+            position: relative;
+            transition: color 0.3s;
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            transition: width 0.3s;
+        }
+        .nav-link:hover::after,
+        .nav-link.active::after { width: 100%; }
+
+        /* Hero gradient mesh */
+        .hero-bg {
+            background:
+                radial-gradient(ellipse 80% 50% at 50% -20%, rgba(99, 102, 241, 0.15), transparent),
+                radial-gradient(ellipse 60% 40% at 80% 50%, rgba(34, 211, 238, 0.08), transparent),
+                radial-gradient(ellipse 50% 50% at 20% 80%, rgba(99, 102, 241, 0.06), transparent);
+        }
+
+        /* Subtle glow border for avatar */
+        .avatar-ring {
+            background: linear-gradient(135deg, #6366f1, #22d3ee, #a78bfa);
+            padding: 3px;
+            border-radius: 50%;
+            box-shadow: 0 0 20px rgba(99, 102, 241, 0.3), 0 0 40px rgba(34, 211, 238, 0.15);
+            animation: glow-pulse 4s ease-in-out infinite;
+        }
+        @keyframes glow-pulse {
+            0%, 100% { box-shadow: 0 0 20px rgba(99, 102, 241, 0.3), 0 0 40px rgba(34, 211, 238, 0.15); }
+            50% { box-shadow: 0 0 30px rgba(99, 102, 241, 0.5), 0 0 60px rgba(34, 211, 238, 0.25); }
+        }
+
+        /* Section fade-in */
+        .fade-section {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+                        transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .fade-section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Project cards */
+        .project-card {
+            background: var(--surface);
+            border: 1px solid rgba(255,255,255,0.06);
+            border-radius: 1.25rem;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            position: relative;
+            overflow: hidden;
+        }
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            opacity: 0;
+            transition: opacity 0.4s;
+        }
+        .project-card:hover {
+            border-color: rgba(99, 102, 241, 0.3);
+            transform: translateY(-6px);
+            box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5),
+                        0 0 30px -10px rgba(99, 102, 241, 0.15);
+        }
+        .project-card:hover::before { opacity: 1; }
+
+        /* Skill pills */
+        .skill-pill {
+            background: rgba(99, 102, 241, 0.1);
+            border: 1px solid rgba(99, 102, 241, 0.2);
+            padding: 0.375rem 0.875rem;
+            border-radius: 9999px;
+            font-size: 0.8125rem;
+            font-weight: 500;
+            color: #a5b4fc;
+            transition: all 0.3s;
+        }
+        .skill-pill:hover {
+            background: rgba(99, 102, 241, 0.2);
+            border-color: rgba(99, 102, 241, 0.4);
+            transform: translateY(-2px);
+        }
+
+        /* CTA button */
+        .btn-glow {
+            background: linear-gradient(135deg, #6366f1, #4f46e5);
+            box-shadow: 0 0 20px rgba(99, 102, 241, 0.25);
+            transition: all 0.3s;
+        }
+        .btn-glow:hover {
+            box-shadow: 0 0 40px rgba(99, 102, 241, 0.4);
+            transform: translateY(-2px);
+        }
+
+        /* Language color dots */
+        .lang-dot { display: inline-block; width: 10px; height: 10px; border-radius: 50%; margin-right: 6px; }
+
+        /* Loading skeleton */
+        .skeleton {
+            background: linear-gradient(90deg, var(--surface) 25%, var(--surface-2) 50%, var(--surface) 75%);
+            background-size: 200% 100%;
+            animation: shimmer 1.5s infinite;
+            border-radius: 1.25rem;
+        }
+        @keyframes shimmer { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
+
+        /* Stats counter */
+        .stat-card {
+            background: var(--surface);
+            border: 1px solid rgba(255,255,255,0.06);
+            border-radius: 1rem;
+        }
+
+        /* Mobile menu */
+        .mobile-menu {
+            transform: translateX(100%);
+            transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .mobile-menu.open { transform: translateX(0); }
+
+        /* Particle dots */
+        .particle {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(99, 102, 241, 0.3);
+            pointer-events: none;
+            animation: float 15s infinite;
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0) translateX(0); opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { transform: translateY(-100vh) translateX(50px); opacity: 0; }
+        }
+
+        /* Tooltip */
+        .tooltip-text {
+            visibility: hidden;
+            opacity: 0;
+            transition: all 0.2s;
+        }
+        .tooltip:hover .tooltip-text {
+            visibility: visible;
+            opacity: 1;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navbar -->
+    <nav id="navbar" class="fixed top-0 w-full z-50 nav-glass">
+        <div class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
+            <a href="#" class="flex items-center gap-3 group">
+                <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-indigo-500 to-cyan-400 flex items-center justify-center text-white font-bold text-sm">
+                    RM
+                </div>
+                <span class="text-white font-semibold tracking-tight hidden sm:block">Ronald Meza</span>
+            </a>
+            <div class="hidden md:flex items-center gap-8">
+                <a href="#inicio" class="nav-link text-sm text-gray-400 hover:text-white">Inicio</a>
+                <a href="#sobre-mi" class="nav-link text-sm text-gray-400 hover:text-white">Sobre Mí</a>
+                <a href="#proyectos" class="nav-link text-sm text-gray-400 hover:text-white">Proyectos</a>
+                <a href="#habilidades" class="nav-link text-sm text-gray-400 hover:text-white">Habilidades</a>
+                <a href="#contacto" class="nav-link text-sm text-gray-400 hover:text-white">Contacto</a>
+            </div>
+            <button id="menu-btn" class="md:hidden text-gray-400 hover:text-white transition p-2" aria-label="Menu">
+                <i class="fas fa-bars text-lg"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="mobile-menu fixed inset-0 z-[60] bg-gray-950/95 backdrop-blur-xl flex flex-col items-center justify-center gap-8">
+        <button id="menu-close" class="absolute top-5 right-6 text-gray-400 hover:text-white transition p-2" aria-label="Cerrar">
+            <i class="fas fa-xmark text-2xl"></i>
+        </button>
+        <a href="#inicio" class="mobile-link text-2xl font-semibold text-white hover:text-indigo-400 transition">Inicio</a>
+        <a href="#sobre-mi" class="mobile-link text-2xl font-semibold text-white hover:text-indigo-400 transition">Sobre Mí</a>
+        <a href="#proyectos" class="mobile-link text-2xl font-semibold text-white hover:text-indigo-400 transition">Proyectos</a>
+        <a href="#habilidades" class="mobile-link text-2xl font-semibold text-white hover:text-indigo-400 transition">Habilidades</a>
+        <a href="#contacto" class="mobile-link text-2xl font-semibold text-white hover:text-indigo-400 transition">Contacto</a>
+    </div>
+
+    <!-- Hero Section -->
+    <section id="inicio" class="hero-bg min-h-screen flex items-center relative pt-16">
+        <!-- Floating particles -->
+        <div class="particle w-1 h-1" style="left:10%;top:20%;animation-delay:0s"></div>
+        <div class="particle w-1.5 h-1.5" style="left:25%;top:60%;animation-delay:3s"></div>
+        <div class="particle w-1 h-1" style="left:70%;top:30%;animation-delay:6s"></div>
+        <div class="particle w-2 h-2" style="left:85%;top:70%;animation-delay:9s"></div>
+        <div class="particle w-1 h-1" style="left:50%;top:80%;animation-delay:12s"></div>
+
+        <div class="max-w-6xl mx-auto px-6 w-full">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <!-- Text -->
+                <div class="order-2 lg:order-1">
+                    <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-indigo-500/10 border border-indigo-500/20 text-indigo-400 text-xs font-semibold mb-6">
+                        <span class="relative flex h-2 w-2">
+                            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-indigo-400 opacity-75"></span>
+                            <span class="relative inline-flex rounded-full h-2 w-2 bg-indigo-500"></span>
+                        </span>
+                        Disponible para nuevos desafíos
+                    </div>
+
+                    <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white leading-[1.1] tracking-tight mb-6">
+                        Ingeniero de Sistemas
+                        <span class="block bg-gradient-to-r from-indigo-400 via-cyan-400 to-indigo-400 bg-clip-text text-transparent">
+                            & Líder TI
+                        </span>
+                    </h1>
+
+                    <p class="text-gray-400 text-lg leading-relaxed mb-8 max-w-lg">
+                        +15 años garantizando la <span class="text-indigo-400 font-medium">continuidad operativa</span>,
+                        liderando transformación digital y desarrollando soluciones Full Stack en entornos críticos.
+                    </p>
+
+                    <div class="flex flex-wrap gap-3 mb-10">
+                        <a href="#proyectos" class="btn-glow px-7 py-3 rounded-xl text-white font-semibold text-sm flex items-center gap-2">
+                            Ver Proyectos <i class="fas fa-arrow-right text-xs"></i>
+                        </a>
+                        <a href="#contacto" class="px-7 py-3 rounded-xl font-semibold text-sm border border-gray-700 text-gray-300 hover:border-gray-500 hover:text-white transition-all">
+                            Contáctame
+                        </a>
+                    </div>
+
+                    <!-- Quick Stats -->
+                    <div class="flex gap-8 text-sm">
+                        <div>
+                            <p class="text-2xl font-bold text-white">+15</p>
+                            <p class="text-gray-500">Años Experiencia</p>
+                        </div>
+                        <div>
+                            <p class="text-2xl font-bold text-white" id="repo-count-hero">—</p>
+                            <p class="text-gray-500">Proyectos</p>
+                        </div>
+                        <div>
+                            <p class="text-2xl font-bold text-white">+10</p>
+                            <p class="text-gray-500">Certificaciones</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Avatar -->
+                <div class="order-1 lg:order-2 flex justify-center">
+                    <div class="relative">
+                        <div class="avatar-ring">
+                            <img src="https://github.com/rdmezalazo.png"
+                                 alt="Ronald Meza Lazo"
+                                 class="w-56 h-56 sm:w-72 sm:h-72 rounded-full object-cover bg-gray-900"
+                                 loading="eager">
+                        </div>
+                        <!-- Floating badge -->
+                        <div class="absolute -bottom-3 -right-3 bg-gray-900 border border-gray-800 rounded-2xl px-4 py-3 shadow-xl">
+                            <div class="flex items-center gap-2">
+                                <i class="fas fa-award text-indigo-400"></i>
+                                <div>
+                                    <p class="text-[10px] text-gray-500 font-semibold uppercase">Senior</p>
+                                    <p class="text-sm font-bold text-white leading-none">Full Stack & IT</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="sobre-mi" class="py-24 px-6 fade-section">
+        <div class="max-w-6xl mx-auto">
+            <div class="flex items-center gap-4 mb-12">
+                <h2 class="text-3xl font-bold text-white">Sobre Mí</h2>
+                <div class="flex-1 h-px bg-gradient-to-r from-gray-800 to-transparent"></div>
+            </div>
+
+            <div class="grid lg:grid-cols-3 gap-8">
+                <div class="lg:col-span-2 space-y-5 text-gray-400 leading-relaxed">
+                    <p>
+                        Soy <strong class="text-white">Ronald Meza Lazo</strong>, Ingeniero de Sistemas con más de 15 años de trayectoria
+                        garantizando la continuidad operativa y liderando la transformación digital en entornos críticos.
+                        Actualmente me desempeño como <strong class="text-indigo-400">Jefe de Tecnologías de la Información en LIVIGUI</strong>,
+                        donde gestiono estratégicamente la infraestructura tecnológica y servicios Cloud (AWS/Azure).
+                    </p>
+                    <p>
+                        Mi experiencia abarca desde el desarrollo Full Stack con Laravel/Vue.js hasta la administración
+                        avanzada de redes LAN/WAN, seguridad de la información y gestión de equipos de alto rendimiento.
+                        He trabajado en instituciones como SENATI, Instituto del Sur, UGEL Arequipa Sur y diversas empresas
+                        del sector tecnológico.
+                    </p>
+                    <p>
+                        Cuento con un Máster en Liderazgo y Gestión (TECH Universidad Tecnológica), certificaciones Cisco CCNA,
+                        ITIL 4 Foundation, ISO 27001 y formación continua en inteligencia artificial y ciberseguridad.
+                    </p>
+                </div>
+
+                <div class="space-y-4">
+                    <div class="stat-card p-5">
+                        <div class="flex items-center gap-3 mb-2">
+                            <i class="fas fa-briefcase text-indigo-400"></i>
+                            <span class="text-sm text-gray-500 font-medium">Cargo Actual</span>
+                        </div>
+                        <p class="text-white font-semibold">Jefe de TI</p>
+                        <p class="text-gray-500 text-sm">LIVIGUI &middot; 2023 — Actualidad</p>
+                    </div>
+                    <div class="stat-card p-5">
+                        <div class="flex items-center gap-3 mb-2">
+                            <i class="fas fa-graduation-cap text-cyan-400"></i>
+                            <span class="text-sm text-gray-500 font-medium">Formación</span>
+                        </div>
+                        <p class="text-white font-semibold">Ingeniero de Sistemas</p>
+                        <p class="text-gray-500 text-sm">Máster en Liderazgo y Gestión</p>
+                    </div>
+                    <div class="stat-card p-5">
+                        <div class="flex items-center gap-3 mb-2">
+                            <i class="fas fa-map-marker-alt text-rose-400"></i>
+                            <span class="text-sm text-gray-500 font-medium">Ubicación</span>
+                        </div>
+                        <p class="text-white font-semibold">Arequipa, Perú</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="proyectos" class="py-24 px-6 fade-section">
+        <div class="max-w-6xl mx-auto">
+            <div class="flex items-center gap-4 mb-4">
+                <h2 class="text-3xl font-bold text-white">Proyectos</h2>
+                <div class="flex-1 h-px bg-gradient-to-r from-gray-800 to-transparent"></div>
+            </div>
+            <p class="text-gray-500 mb-10 text-sm">
+                Repositorios públicos cargados dinámicamente desde GitHub.
+                <span class="text-gray-600 italic">Se actualiza automáticamente al agregar o quitar repositorios.</span>
+            </p>
+
+            <!-- Projects Grid -->
+            <div id="projects-grid" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Loading skeletons -->
+                <div class="skeleton h-64"></div>
+                <div class="skeleton h-64"></div>
+                <div class="skeleton h-64"></div>
+            </div>
+
+            <!-- Error state -->
+            <div id="projects-error" class="hidden text-center py-16">
+                <i class="fas fa-exclamation-triangle text-4xl text-amber-500 mb-4"></i>
+                <p class="text-gray-400">No se pudieron cargar los repositorios.</p>
+                <button onclick="loadRepos()" class="mt-4 text-indigo-400 hover:text-indigo-300 font-medium text-sm">
+                    <i class="fas fa-redo mr-1"></i> Reintentar
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="habilidades" class="py-24 px-6 fade-section">
+        <div class="max-w-6xl mx-auto">
+            <div class="flex items-center gap-4 mb-12">
+                <h2 class="text-3xl font-bold text-white">Stack Tecnológico</h2>
+                <div class="flex-1 h-px bg-gradient-to-r from-gray-800 to-transparent"></div>
+            </div>
+
+            <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Infraestructura -->
+                <div class="stat-card p-6 hover:border-indigo-500/30 transition-colors">
+                    <div class="w-12 h-12 rounded-xl bg-indigo-500/10 flex items-center justify-center text-indigo-400 text-xl mb-5">
+                        <i class="fas fa-server"></i>
+                    </div>
+                    <h3 class="text-white font-bold mb-4">Infraestructura & Cloud</h3>
+                    <div class="space-y-2 text-sm">
+                        <div class="flex justify-between text-gray-400"><span>Microsoft 365 / Azure</span><span class="text-indigo-400 font-medium">Avanzado</span></div>
+                        <div class="flex justify-between text-gray-400"><span>AWS / Virtualización</span><span class="text-indigo-400 font-medium">Senior</span></div>
+                        <div class="flex justify-between text-gray-400"><span>Redes LAN/WAN</span><span class="text-indigo-400 font-medium">CCNA</span></div>
+                    </div>
+                </div>
+
+                <!-- Desarrollo -->
+                <div class="stat-card p-6 hover:border-emerald-500/30 transition-colors">
+                    <div class="w-12 h-12 rounded-xl bg-emerald-500/10 flex items-center justify-center text-emerald-400 text-xl mb-5">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <h3 class="text-white font-bold mb-4">Desarrollo Full Stack</h3>
+                    <div class="space-y-2 text-sm">
+                        <div class="flex justify-between text-gray-400"><span>Laravel / Vue.js</span><span class="text-emerald-400 font-medium">90%</span></div>
+                        <div class="flex justify-between text-gray-400"><span>MySQL / PostgreSQL</span><span class="text-emerald-400 font-medium">95%</span></div>
+                        <div class="flex justify-between text-gray-400"><span>TypeScript / Node.js</span><span class="text-emerald-400 font-medium">85%</span></div>
+                    </div>
+                </div>
+
+                <!-- Gestión -->
+                <div class="stat-card p-6 hover:border-amber-500/30 transition-colors">
+                    <div class="w-12 h-12 rounded-xl bg-amber-500/10 flex items-center justify-center text-amber-400 text-xl mb-5">
+                        <i class="fas fa-shield-halved"></i>
+                    </div>
+                    <h3 class="text-white font-bold mb-4">Gestión & Seguridad</h3>
+                    <div class="space-y-2 text-sm">
+                        <div class="flex justify-between text-gray-400"><span>Seguridad Info.</span><span class="text-amber-400 font-medium">ISO 27001</span></div>
+                        <div class="flex justify-between text-gray-400"><span>ITIL 4 Foundation</span><span class="text-amber-400 font-medium">Certificado</span></div>
+                        <div class="flex justify-between text-gray-400"><span>Liderazgo TI</span><span class="text-amber-400 font-medium">Senior</span></div>
+                    </div>
+                </div>
+
+                <!-- IA -->
+                <div class="stat-card p-6 hover:border-purple-500/30 transition-colors">
+                    <div class="w-12 h-12 rounded-xl bg-purple-500/10 flex items-center justify-center text-purple-400 text-xl mb-5">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <h3 class="text-white font-bold mb-4">Inteligencia Artificial</h3>
+                    <div class="space-y-2 text-sm">
+                        <div class="flex justify-between text-gray-400"><span>Consultoría IA</span><span class="text-purple-400 font-medium">Especialista</span></div>
+                        <div class="flex justify-between text-gray-400"><span>Integración & Prompting</span><span class="text-purple-400 font-medium">Avanzado</span></div>
+                        <div class="flex justify-between text-gray-400"><span>Automatización</span><span class="text-purple-400 font-medium">Avanzado</span></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Technologies ribbon -->
+            <div class="mt-12 flex flex-wrap justify-center gap-2">
+                <span class="skill-pill">TypeScript</span>
+                <span class="skill-pill">Laravel</span>
+                <span class="skill-pill">Vue.js</span>
+                <span class="skill-pill">Node.js</span>
+                <span class="skill-pill">MySQL</span>
+                <span class="skill-pill">PostgreSQL</span>
+                <span class="skill-pill">AWS</span>
+                <span class="skill-pill">Azure</span>
+                <span class="skill-pill">Docker</span>
+                <span class="skill-pill">Git</span>
+                <span class="skill-pill">Linux</span>
+                <span class="skill-pill">Cisco CCNA</span>
+                <span class="skill-pill">ITIL 4</span>
+                <span class="skill-pill">ISO 27001</span>
+                <span class="skill-pill">Scrum</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contacto" class="py-24 px-6 fade-section">
+        <div class="max-w-3xl mx-auto text-center">
+            <h2 class="text-3xl sm:text-4xl font-bold text-white mb-4">Hablemos de tu próximo proyecto</h2>
+            <p class="text-gray-500 mb-10 max-w-lg mx-auto">
+                Estoy disponible para nuevos desafíos en infraestructura TI, desarrollo Full Stack y consultoría tecnológica.
+            </p>
+
+            <div class="flex flex-wrap justify-center gap-4 mb-10">
+                <a href="mailto:rdmezalazo@gmail.com"
+                   class="flex items-center gap-3 bg-white text-gray-900 px-6 py-3.5 rounded-xl font-semibold text-sm hover:scale-105 transition-transform shadow-lg">
+                    <i class="fas fa-envelope"></i>
+                    rdmezalazo@gmail.com
+                </a>
+                <a href="https://www.linkedin.com/in/ronald-meza-lazo-2791a155" target="_blank" rel="noopener"
+                   class="flex items-center gap-3 bg-[#0a66c2] text-white px-6 py-3.5 rounded-xl font-semibold text-sm hover:scale-105 transition-transform shadow-lg">
+                    <i class="fab fa-linkedin"></i>
+                    LinkedIn
+                </a>
+                <a href="https://wa.me/51936012244" target="_blank" rel="noopener"
+                   class="flex items-center gap-3 bg-[#25d366] text-white px-6 py-3.5 rounded-xl font-semibold text-sm hover:scale-105 transition-transform shadow-lg">
+                    <i class="fab fa-whatsapp"></i>
+                    WhatsApp
+                </a>
+                <a href="https://github.com/rdmezalazo" target="_blank" rel="noopener"
+                   class="flex items-center gap-3 bg-gray-800 text-white px-6 py-3.5 rounded-xl font-semibold text-sm hover:scale-105 transition-transform border border-gray-700 shadow-lg">
+                    <i class="fab fa-github"></i>
+                    GitHub
+                </a>
+            </div>
+
+            <div class="flex justify-center items-center gap-6 text-gray-600 text-sm">
+                <span class="flex items-center gap-1.5">
+                    <i class="fas fa-map-marker-alt text-indigo-500"></i> Arequipa, Perú
+                </span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="border-t border-gray-900 py-8 px-6">
+        <div class="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-gray-600">
+            <p>&copy; <span id="year"></span> Ronald Meza Lazo</p>
+            <div class="flex items-center gap-4">
+                <a href="https://github.com/rdmezalazo" target="_blank" rel="noopener" class="hover:text-gray-400 transition"><i class="fab fa-github"></i></a>
+                <a href="https://www.linkedin.com/in/ronald-meza-lazo-2791a155" target="_blank" rel="noopener" class="hover:text-gray-400 transition"><i class="fab fa-linkedin"></i></a>
+                <a href="mailto:rdmezalazo@gmail.com" class="hover:text-gray-400 transition"><i class="fas fa-envelope"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // =========================================================
+        // CONFIG
+        // =========================================================
+        const GITHUB_USERNAME = 'rdmezalazo';
+        const EXCLUDED_REPOS  = ['infosolutions', 'rdmezalazo', 'cv-ronaldmeza', 'portfolio'];
+
+        // Language → colour mapping (GitHub-style)
+        const LANG_COLORS = {
+            TypeScript:  '#3178c6',
+            JavaScript:  '#f1e05a',
+            HTML:        '#e34c26',
+            CSS:         '#563d7c',
+            PHP:         '#4F5D95',
+            Python:      '#3572A5',
+            Vue:         '#41b883',
+            Shell:       '#89e051',
+            Dockerfile:  '#384d54',
+        };
+
+        // Friendly descriptions for known repos
+        const REPO_DESCRIPTIONS = {
+            'conformidadservicio': 'Sistema de gestión de conformidad de servicios con flujos de aprobación digital.',
+            'sistema-cesmed':     'Sistema integral para la gestión operativa de clínica privada — administrativo, financiero y clínico.',
+            'sistema-workflow':   'Motor de flujos de trabajo (workflow engine) para automatización de procesos empresariales.',
+            'sistemadentaltovar': 'Sistema de gestión para consultorio dental — citas, historiales clínicos y facturación.',
+            'ticketdesklocal':    'Sistema de mesa de ayuda (helpdesk) para la gestión de tickets de soporte técnico interno.',
+        };
+
+        // =========================================================
+        // LOAD REPOS
+        // =========================================================
+        async function loadRepos() {
+            const grid  = document.getElementById('projects-grid');
+            const error = document.getElementById('projects-error');
+
+            grid.innerHTML = '<div class="skeleton h-64"></div><div class="skeleton h-64"></div><div class="skeleton h-64"></div>';
+            error.classList.add('hidden');
+
+            try {
+                const res = await fetch(`https://api.github.com/users/${GITHUB_USERNAME}/repos?per_page=100&sort=updated`);
+                if (!res.ok) throw new Error(res.statusText);
+                const repos = await res.json();
+
+                const filtered = repos
+                    .filter(r => !r.fork && !EXCLUDED_REPOS.includes(r.name))
+                    .sort((a, b) => new Date(b.updated_at) - new Date(a.updated_at));
+
+                document.getElementById('repo-count-hero').textContent = filtered.length;
+
+                if (filtered.length === 0) {
+                    grid.innerHTML = `
+                        <div class="sm:col-span-2 lg:col-span-3 text-center py-16">
+                            <i class="fas fa-folder-open text-4xl text-gray-700 mb-4"></i>
+                            <p class="text-gray-500">No hay proyectos públicos disponibles por el momento.</p>
+                        </div>`;
+                    return;
+                }
+
+                grid.innerHTML = filtered.map(repo => {
+                    const lang = repo.language || 'N/A';
+                    const color = LANG_COLORS[lang] || '#6b7280';
+                    const desc = repo.description || REPO_DESCRIPTIONS[repo.name] || 'Sin descripción disponible.';
+                    const updated = timeAgo(new Date(repo.updated_at));
+                    const name = formatRepoName(repo.name);
+                    const topics = (repo.topics || []).slice(0, 3);
+
+                    return `
+                    <a href="${repo.html_url}" target="_blank" rel="noopener" class="project-card p-6 flex flex-col group">
+                        <div class="flex items-start justify-between mb-4">
+                            <div class="w-10 h-10 rounded-xl bg-indigo-500/10 flex items-center justify-center text-indigo-400 group-hover:bg-indigo-500/20 transition">
+                                <i class="fas fa-code-branch"></i>
+                            </div>
+                            <i class="fas fa-arrow-up-right-from-square text-gray-700 group-hover:text-indigo-400 transition text-sm"></i>
+                        </div>
+
+                        <h3 class="text-white font-bold text-lg mb-2 group-hover:text-indigo-300 transition">${name}</h3>
+                        <p class="text-gray-500 text-sm leading-relaxed flex-1 mb-4 line-clamp-3">${desc}</p>
+
+                        ${topics.length ? `
+                        <div class="flex flex-wrap gap-1.5 mb-4">
+                            ${topics.map(t => `<span class="text-[11px] px-2 py-0.5 rounded-md bg-gray-800 text-gray-400 border border-gray-700/50">${t}</span>`).join('')}
+                        </div>` : ''}
+
+                        <div class="flex items-center gap-4 text-xs text-gray-600 mt-auto pt-4 border-t border-gray-800/50">
+                            ${lang !== 'N/A' ? `
+                            <span class="flex items-center gap-1.5">
+                                <span class="lang-dot" style="background:${color}"></span>${lang}
+                            </span>` : ''}
+                            <span class="flex items-center gap-1">
+                                <i class="far fa-star"></i> ${repo.stargazers_count}
+                            </span>
+                            <span class="flex items-center gap-1">
+                                <i class="fas fa-code-fork"></i> ${repo.forks_count}
+                            </span>
+                            <span class="ml-auto text-gray-700">${updated}</span>
+                        </div>
+                    </a>`;
+                }).join('');
+
+            } catch (e) {
+                console.error('Error loading repos:', e);
+                grid.innerHTML = '';
+                error.classList.remove('hidden');
+            }
+        }
+
+        // =========================================================
+        // HELPERS
+        // =========================================================
+        function formatRepoName(name) {
+            return name
+                .replace(/[-_]/g, ' ')
+                .replace(/\b\w/g, c => c.toUpperCase());
+        }
+
+        function timeAgo(date) {
+            const seconds = Math.floor((Date.now() - date.getTime()) / 1000);
+            const intervals = [
+                { label: 'año', seconds: 31536000 },
+                { label: 'mes', seconds: 2592000 },
+                { label: 'sem', seconds: 604800 },
+                { label: 'día', seconds: 86400 },
+                { label: 'hr',  seconds: 3600 },
+                { label: 'min', seconds: 60 },
+            ];
+            for (const i of intervals) {
+                const count = Math.floor(seconds / i.seconds);
+                if (count >= 1) return `hace ${count} ${i.label}${count > 1 && !i.label.endsWith('s') ? (i.label === 'mes' ? 'es' : 's') : ''}`;
+            }
+            return 'justo ahora';
+        }
+
+        // =========================================================
+        // INTERSECTION OBSERVER — fade-in sections
+        // =========================================================
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) entry.target.classList.add('visible');
+            });
+        }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+
+        document.querySelectorAll('.fade-section').forEach(s => observer.observe(s));
+
+        // =========================================================
+        // ACTIVE NAV LINK
+        // =========================================================
+        const sections = document.querySelectorAll('section[id]');
+        const navLinks = document.querySelectorAll('.nav-link');
+
+        window.addEventListener('scroll', () => {
+            let current = '';
+            sections.forEach(section => {
+                const top = section.offsetTop - 100;
+                if (scrollY >= top) current = section.getAttribute('id');
+            });
+            navLinks.forEach(link => {
+                link.classList.toggle('active', link.getAttribute('href') === `#${current}`);
+                link.classList.toggle('text-white', link.getAttribute('href') === `#${current}`);
+            });
+        });
+
+        // =========================================================
+        // MOBILE MENU
+        // =========================================================
+        const menuBtn   = document.getElementById('menu-btn');
+        const menuClose = document.getElementById('menu-close');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        menuBtn.addEventListener('click', () => mobileMenu.classList.add('open'));
+        menuClose.addEventListener('click', () => mobileMenu.classList.remove('open'));
+        document.querySelectorAll('.mobile-link').forEach(l =>
+            l.addEventListener('click', () => mobileMenu.classList.remove('open'))
+        );
+
+        // =========================================================
+        // YEAR & INIT
+        // =========================================================
+        document.getElementById('year').textContent = new Date().getFullYear();
+        loadRepos();
+    </script>
+</body>
+
+</html>
