@@ -88,14 +88,18 @@
                 radial-gradient(ellipse 50% 50% at 20% 80%, rgba(99, 102, 241, 0.06), transparent);
         }
 
-        /* Animated gradient border for avatar */
+        /* Subtle glow border for avatar */
         .avatar-ring {
-            background: conic-gradient(from 0deg, #6366f1, #22d3ee, #a78bfa, #6366f1);
+            background: linear-gradient(135deg, #6366f1, #22d3ee, #a78bfa);
             padding: 3px;
             border-radius: 50%;
-            animation: spin-slow 8s linear infinite;
+            box-shadow: 0 0 20px rgba(99, 102, 241, 0.3), 0 0 40px rgba(34, 211, 238, 0.15);
+            animation: glow-pulse 4s ease-in-out infinite;
         }
-        @keyframes spin-slow { to { transform: rotate(360deg); } }
+        @keyframes glow-pulse {
+            0%, 100% { box-shadow: 0 0 20px rgba(99, 102, 241, 0.3), 0 0 40px rgba(34, 211, 238, 0.15); }
+            50% { box-shadow: 0 0 30px rgba(99, 102, 241, 0.5), 0 0 60px rgba(34, 211, 238, 0.25); }
+        }
 
         /* Section fade-in */
         .fade-section {
